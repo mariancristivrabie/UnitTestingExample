@@ -24,21 +24,21 @@ export const TaskList = () => {
     }
 
     return (
-        <div className='task-list'>
+        <div className='task-list' data-testid='task-list'>
             <div className='task-list__name'>Tasks list</div>
             <button className='task-list__button task-list__button--add' onClick={() => setIsAddingTask(!isAddingTask)} > Add </button>
 
             {isAddingTask && (
                 <div className='task-list__add-task'>
-                    <input className='task-list__input' value={taskName} onChange={(e) => setTaskName(e.target.value)} />
-                    <input className='task-list__input' value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input placeholder='Task Name' className='task-list__input' value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+                    <input placeholder='Task Description' className='task-list__input' value={description} onChange={(e) => setDescription(e.target.value)} />
                     <button className='task-list__button task-list__button--save' onClick={handleSaveTask}>Save</button>
                 </div>
             )}
 
             <ul>
                 {taskList.map((task:any) => (
-                    <li>
+                    <li key={`${task.name} - ${task.description}`}>
                         <span className='task-list__task-name'>{task.name}</span> -
                         <span className='task-list__task-description'>{task.description}</span>
                     </li>
