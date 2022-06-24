@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import { TaskList } from './pages/TaskList/TaskList';
+import { TaskList } from './TaskList/TaskList';
 
 function App() {
   return (
