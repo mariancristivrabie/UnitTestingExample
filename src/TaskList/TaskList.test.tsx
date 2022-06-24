@@ -72,16 +72,23 @@ describe('<TaskList />',() => {
         let nameInput = screen.queryByPlaceholderText('Task Name');
         let descriptionInput = screen.queryByPlaceholderText('Task Description');
         const saveButton = screen.getByRole('button',{name:'Save'})
-
+        const taskNameValue = 'New task name';
+        const taskDescriptionValue = 'New task description';
 
         if(nameInput && descriptionInput){
-            fireEvent.change(nameInput, { target: { value: 'New task name' } });
-            fireEvent.change(descriptionInput, { target: { value: 'New task description' } });
+            fireEvent.change(nameInput, { target: { value: taskNameValue } });
+            fireEvent.change(descriptionInput, { target: { value: taskDescriptionValue } });
             fireEvent.click(saveButton);
         }
 
         const list = screen.getByRole('list');
         expect(list.childElementCount).toEqual(1);
+
+        const taskTitle = screen.getByText(taskNameValue);
+        const taskDescription = screen.getByText(taskDescriptionValue);
+
+        expect(taskTitle).toBeInTheDocument();
+        expect(taskDescription).toBeInTheDocument();
 
         nameInput = screen.queryByPlaceholderText('Task Name');
         descriptionInput = screen.queryByPlaceholderText('Task Description');
